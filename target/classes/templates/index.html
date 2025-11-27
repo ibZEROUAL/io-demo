@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>Upload File</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f7fa;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            background: #ffffff;
+            padding: 30px 40px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            text-align: center;
+            width: 350px;
+        }
+        h1 {
+            font-size: 22px;
+            margin-bottom: 20px;
+            color: #333;
+        }
+        input[type="file"] {
+            margin: 15px 0;
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 15px;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>Upload your file (.xlsx) </h1>
+    <form method="POST" enctype="multipart/form-data" th:action="@{/uploadExcel}">
+        <input type="file" name="file" accept=".xlsx" required>
+        <br />
+        <button type="submit">Generate text file</button>
+    </form>
+</div>
+</body>
+</html>
