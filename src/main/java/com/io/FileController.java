@@ -32,7 +32,7 @@ public class FileController {
     public ResponseEntity<FileSystemResource> uploadExcelFile(@RequestParam MultipartFile file) throws IOException {
         FileSystemResource resource;
         try(FileInputStream inputStream = new FileInputStream(toFile(file));
-            BufferedWriter writer = new BufferedWriter(new FileWriter(fileName+".txt"));
+            BufferedWriter writer = new BufferedWriter(new FileWriter(fileName.split("\\.")[0]+".txt"));
             Workbook workbook = new XSSFWorkbook(inputStream)){
 
             Sheet sheet = workbook.getSheetAt(0);
@@ -65,9 +65,9 @@ public class FileController {
                 writer.newLine();
                 i++;
             }
-            resource = new FileSystemResource(fileName+".txt");
+            resource = new FileSystemResource(fileName.split("\\.")[0]+".txt");
             HttpHeaders headers = new HttpHeaders();
-            headers.add(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + fileName+".txt" + "\"");
+            headers.add(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + fileName.split("\\.")[0]+".txt" + "\"");
             headers.add(HttpHeaders.CACHE_CONTROL, "no-cache, no-store, must-revalidate");
             headers.add(HttpHeaders.PRAGMA, "no-cache");
             headers.add(HttpHeaders.EXPIRES, "0");
