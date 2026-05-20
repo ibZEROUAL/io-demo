@@ -102,11 +102,12 @@ public class FileController {
         StringBuilder line = new StringBuilder();
         boolean hasData = false;
         int lastCellIndex = row.getLastCellNum() - 1;
+        int penultimateCellIndex = row.getLastCellNum() - 2;
 
         for (int cellIndex = 0; cellIndex < row.getLastCellNum(); cellIndex++) {
             Cell cell = row.getCell(cellIndex);
             String value = cell == null ? "" : formatter.formatCellValue(cell).trim();
-            if (cellIndex == lastCellIndex) {
+            if (cellIndex == lastCellIndex || cellIndex == penultimateCellIndex) {
                 value = value.replace(" ", "");
             }
 
